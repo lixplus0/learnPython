@@ -3,7 +3,7 @@ import os
 import moviepy.editor as mpe
 from natsort import natsorted
 
-ffmpeg = r'"D:\Program Files (x86)\ffmpeg\bin\ffmpeg.exe"'
+ffmpeg = r'"D:\Program Files (x86)\MarukoToolbox\tools\ffmpeg.exe"'
 n = 0
 for root, dirs, files in os.walk(r"D:\MyFiles\Downloads\Pictures\slimmo\video\960x720"):
     files = natsorted(files)
