@@ -1,0 +1,24 @@
+{
+    "files.associations": {
+        "*.cjson": "jsonc",
+        "*.wxss": "css",
+        "*.wxs": "javascript"
+    },
+    "emmet.includeLanguages": {
+        "wxml": "html"
+    },
+    "code-runner.executorMap": {
+        "python": "set PYTHONIOENCODING=utf8 && python",
+    },
+    "code-runner.runInTerminal": false,
+    "minapp-vscode.disableAutoConfig": true,
+    "files.autoSave": "off",
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "editor.minimap.enabled": false,
+    "terminal.integrated.shell.windows": "C:\\windows\\System32\\cmd.exe",
+    "python.linting.pylintArgs": [
+        "--extension-pkg-whitelist=wx"
+    ],
+    "workbench.iconTheme": "vscode-icons"
+}
