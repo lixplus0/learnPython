@@ -11,7 +11,6 @@
         "python": "set PYTHONIOENCODING=utf8 && python",
     },
     "code-runner.runInTerminal": false,
-    "minapp-vscode.disableAutoConfig": true,
     "files.autoSave": "off",
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
