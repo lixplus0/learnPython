@@ -92,7 +92,7 @@ if __name__ == "__main__":
     mziTulist = ['https://www.mzitu.com/all/', 'https://www.mzitu.com/old/']
 
     # 最新的有多少期？
-    new_pics = 33
+    new_pics = 77
     # 定义存储位置
     save_path = 'D:\\MyFiles\\Downloads\\Pictures\\mzitu'
     createFile(save_path)
