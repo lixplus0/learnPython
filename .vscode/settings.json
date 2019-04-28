@@ -1,12 +1,4 @@
 {
-    "files.associations": {
-        "*.cjson": "jsonc",
-        "*.wxss": "css",
-        "*.wxs": "javascript"
-    },
-    "emmet.includeLanguages": {
-        "wxml": "html"
-    },
     "code-runner.executorMap": {
         "python": "set PYTHONIOENCODING=utf8 && python",
     },
@@ -17,7 +9,7 @@
     "editor.minimap.enabled": false,
     "terminal.integrated.shell.windows": "C:\\windows\\System32\\cmd.exe",
     "python.linting.pylintArgs": [
-        "--extension-pkg-whitelist=wx"
+        "--extension-pkg-whitelist=wx,cv2"
     ],
     "workbench.iconTheme": "vscode-icons"
 }
