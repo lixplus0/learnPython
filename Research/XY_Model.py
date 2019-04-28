@@ -1,9 +1,12 @@
-import random
-import matplotlib.pyplot as plt
-import numpy as np
 import copy
 import math
+import random
 import time
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+
 '''这个就是MCMC模拟，用来模拟某个温度下XY Ising模型分布，
 几点注意：
 注意1，二维伊辛模型，我们用矩阵来模拟。
@@ -66,11 +69,13 @@ def getEnergy(i, j, S, angle=None):
     if angle == None:
 
         for num_i in range(0, 4, 1):
-            energy += -np.cos(S[i][j]-S[enviroment[num_i][0]][enviroment[num_i][1]])
+            energy += -np.cos(S[i][j]-S[enviroment[num_i][0]]
+                              [enviroment[num_i][1]])
     else:
 
         for num_i in range(0, 4, 1):
-            energy += -np.cos(angle-S[enviroment[num_i][0]][enviroment[num_i][1]])
+            energy += -np.cos(angle-S[enviroment[num_i]
+                                      [0]][enviroment[num_i][1]])
     return energy
 
 # S=2*np.pi*np.random.rand(30,30)
