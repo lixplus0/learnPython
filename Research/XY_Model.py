@@ -111,14 +111,14 @@ def getWeightValue(numsOfSample, sizeOfSample, temperature):
         print('+++++++正在计算第%s个样本++++++++++' % i)
         S = 2*np.pi*np.random.random((sizeOfSample, sizeOfSample))
         initialEnergy = calculateAllEnergy(S)
-        print('系统的初始能量是:'.encode('utf-8').decode('GBK'), initialEnergy)
+        print('系统的初始能量是:', initialEnergy)
         newS = np.array(copy.deepcopy(S))
         for nseeps in range(100):
             newS = MetropolisHastings(newS, temperature, sizeOfSample**2)
         aveEnergy = calculateAllEnergy(newS)
         plot(newS)
 
-        print('系统的平均能量是:'.encode('utf-8').decode('GBK'), aveEnergy)
+        print('系统的平均能量是:', aveEnergy)
         reshaped = np.reshape(newS, (1, sizeOfSample**2))
         if i == 0:
             s = copy.deepcopy(reshaped)
