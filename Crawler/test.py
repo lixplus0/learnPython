@@ -2,8 +2,20 @@
 
 import time
 import os
+import json
 
-ticks = time.localtime()
-date = time.strftime("%Y",ticks) + '年' + time.strftime("%m",ticks) + '月'
-print(date)
-os.makedirs('D:\\1\\')
+json_file = "driver.json"
+
+def load_file():
+    if os.path.exists(json_file):
+        with open("driver.json", mode='r') as ff:
+            b = json.load(ff)
+            return b
+    else:
+        with open(json_file, mode='w', encoding='utf-8') as f:
+            json.dump({}, f)
+            return {}
+
+with open("driver.json", mode='r') as ff:
+    b = json.load(ff)
+print(b)
