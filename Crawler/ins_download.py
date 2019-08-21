@@ -47,13 +47,13 @@ def ins_download(_update, _ins_user):
 def __main__():
     my_account = '-u lixplus -p Lidathena10'
     update = 1
-    ins_dir = r'D:\Instagram'
+    ins_dir = r'D:\MyFiles\Downloads\Pictures\Instagram'
     os.chdir(ins_dir)
     user_list = os.listdir(ins_dir)
     for user in user_list[::]:
         if os.path.isfile(os.path.join(ins_dir, user)):
             user_list.remove(user)
-    user_list += ['vely.mom', 'candyseul']
+    user_list += ['velyyson_g', 'djamberna', 'yun.jj', 'djjina_official']
     ins_download(update, user_list)
 
 
