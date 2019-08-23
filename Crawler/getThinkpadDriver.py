@@ -81,17 +81,22 @@ class CheckDriver():
         try:
             self.new_json_info = self.get_webinfo()
             self.old_json_info = self.load_file()
-            # self.write_file(self.new_json_info)
             notebook_series = self.new_json_info['driverSerious'][0]['NodeCode']
             # notebook_pic = self.new_json_info['driverSerious'][0]['PicturePath']
             self.mail_title = notebook_series + '\r\n'
-            part_list = self.new_json_info['partList']
-            for i in range(0, len(part_list)):
-                part_name = part_list[i]['PartName']
-                drive_list = part_list[i]['drivelist']
-                for j in range(0, len(drive_list)):
-                    new_drive_version = drive_list[j]['Version']
-                    old_drive_version = self.old_json_info['partList'][i]['drivelist'][j]['Version']
+            new_part_list = self.new_json_info['partList']
+            old_part_list = self.old_json_info['partList']
+            for i in range(0, len(new_part_list)):
+                part_name = new_part_list[i]['PartName'] # 判断
+                new_drive_list = new_part_list[i]['drivelist']
+                old_i = 0
+                while new_part_list[i]['PartID'] != old_part_list[old_i]['PartID']:
+                    old_i += 1
+                old_drive_list = old_part_list[old_i]['drivelist']
+                for j in range(0, len(new_drive_list)):
+                    new_drive_version = new_drive_list[j]['Version']
+                    
+                    old_drive_version = old_drive_list[j]['Version']
                     if old_drive_version == new_drive_version:
                         continue
                     else:
