@@ -1,11 +1,11 @@
 # coding=utf-8
 import os
 import time
-import requests
 import json
 import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
+import requests
 
 
 class CheckDriver():
@@ -87,36 +87,39 @@ class CheckDriver():
             new_part_list = self.new_json_info['partList']
             old_part_list = self.old_json_info['partList']
             for i in range(0, len(new_part_list)):
-                part_name = new_part_list[i]['PartName'] # 判断
+                part_name = new_part_list[i]['PartName']  # 判断
                 new_drive_list = new_part_list[i]['drivelist']
-                old_i = 0
-                while new_part_list[i]['PartID'] != old_part_list[old_i]['PartID']:
-                    old_i += 1
+                for old_i in list(range(i, len(new_part_list)))+list(range(0, i)):
+                    if new_part_list[i]['PartID'] == old_part_list[old_i]['PartID']:
+                        break
                 old_drive_list = old_part_list[old_i]['drivelist']
                 for j in range(0, len(new_drive_list)):
                     new_drive_version = new_drive_list[j]['Version']
-                    
-                    old_drive_version = old_drive_list[j]['Version']
+                    for old_j in list(range(j, len(new_drive_list)))+list(range(0, j)):
+                        if new_drive_list[j]['DriverEdtionId'] == old_drive_list[old_j]['DriverEdtionId']:
+                            break
+                    old_drive_version = old_drive_list[old_j]['Version']
                     if old_drive_version == new_drive_version:
                         continue
                     else:
                         self.flag += 1
-                        drive_name = drive_list[j]['DriverName']
-                        pub_date = drive_list[j]['DriverIssuedDateTime']
-                        file_path = drive_list[j]['FilePath']
+                        drive_name = new_drive_list[j]['DriverName']
+                        pub_date = new_drive_list[j]['DriverIssuedDateTime']
+                        file_path = new_drive_list[j]['FilePath']
                         update_msg = part_name + ': ' + drive_name + ' ' + old_drive_version + \
                             '==>' + new_drive_version + ' 更新日期: ' + pub_date + ' \r\n    下载链接: ' + file_path
                         self.message_list.append(update_msg)
-                        
+
             if self.flag == 0:
-                print('所有驱动都不需要更新 ' + time.strftime("%Y-%m-%d", time.localtime()) )
+                print('所有驱动都不需要更新 ' + time.strftime("%Y-%m-%d", time.localtime()))
             else:
                 self.email()
                 self.write_file(self.new_json_info)
-                print('json文件更新成功 ' + time.strftime("%Y-%m-%d", time.localtime()) )
+                print('json文件更新成功 ' + time.strftime("%Y-%m-%d", time.localtime()))
                 self.reset()
         except:
             print('error')
+
 
 if __name__ == "__main__":
     check_driver = CheckDriver()  # 创建类的实例
