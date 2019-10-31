@@ -94,13 +94,17 @@ class CheckDriver():
                         break
                 old_drive_list = old_part_list[old_i]['drivelist']
                 for j in range(0, len(new_drive_list)):
+                    new_add = 0
                     new_drive_version = new_drive_list[j]['Version']
-                    for old_j in list(range(j, len(new_drive_list)))+list(range(0, j)):
+                    for old_j in range(0, len(old_drive_list)):
                         if new_drive_list[j]['DriverEdtionId'] == old_drive_list[old_j]['DriverEdtionId']:
                             break
-                    old_drive_version = old_drive_list[old_j]['Version']
-                    if old_drive_version == new_drive_version:
-                        continue
+                        else:
+                            new_add += 1
+                    if new_add < len(old_drive_list):
+                        old_drive_version = old_drive_list[old_j]['Version']
+                        if old_drive_version == new_drive_version:
+                            continue
                     else:
                         self.flag += 1
                         drive_name = new_drive_list[j]['DriverName']
