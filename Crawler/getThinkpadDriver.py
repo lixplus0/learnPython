@@ -13,8 +13,8 @@ class CheckDriver():
         self.WEBSITE = 'https://newsupport.lenovo.com.cn/api/drive/drive_listnew?searchKey=3110338&sysid=138'
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'}
-        # self.json_file = r"D:\Learn_Codes\LearnPython\Crawler\driver.json"
-        self.json_file = r".\driver.json"
+        self.json_file = r"D:\Learn_Codes\LearnPython\Crawler\driver.json"
+        # self.json_file = r".\driver.json"
         self.old_json_info = {}
         self.new_json_info = {}
         self.flag = 0
@@ -97,7 +97,7 @@ class CheckDriver():
                     new_add = 0
                     new_drive_version = new_drive_list[j]['Version']
                     for old_j in range(0, len(old_drive_list)):
-                        if new_drive_list[j]['DriverEdtionId'] == old_drive_list[old_j]['DriverEdtionId']:
+                        if new_drive_list[j]['DriverCode'] == old_drive_list[old_j]['DriverCode']:
                             break
                         else:
                             new_add += 1
@@ -106,13 +106,15 @@ class CheckDriver():
                         if old_drive_version == new_drive_version:
                             continue
                     else:
-                        self.flag += 1
-                        drive_name = new_drive_list[j]['DriverName']
-                        pub_date = new_drive_list[j]['DriverIssuedDateTime']
-                        file_path = new_drive_list[j]['FilePath']
-                        update_msg = part_name + ': ' + drive_name + ' ' + old_drive_version + \
-                            '==>' + new_drive_version + ' 更新日期: ' + pub_date + ' \r\n    下载链接: ' + file_path
-                        self.message_list.append(update_msg)
+                        old_drive_version = "新增"
+
+                    self.flag += 1
+                    drive_name = new_drive_list[j]['DriverName']
+                    pub_date = new_drive_list[j]['DriverIssuedDateTime']
+                    file_path = new_drive_list[j]['FilePath']
+                    update_msg = part_name + ': ' + drive_name + ' ' + old_drive_version + \
+                        '==>' + new_drive_version + ' 更新日期: ' + pub_date + ' \r\n    下载链接: ' + file_path
+                    self.message_list.append(update_msg)
 
             if self.flag == 0:
                 print('所有驱动都不需要更新 ' + time.strftime("%Y-%m-%d", time.localtime()))
