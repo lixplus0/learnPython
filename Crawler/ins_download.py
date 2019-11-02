@@ -39,21 +39,22 @@ import os
 
 
 def ins_download(_update, _ins_user):
+    my_account = ' -u lixplus -p Lidathena10'
     if _update == 1:
-        cmd = 'instagram-scraper ' + ','.join(_ins_user) + ' --latest'
+        cmd = 'instagram-scraper ' + ','.join(_ins_user) + my_account +' --latest'
     os.system(cmd)
 
 
 def __main__():
-    my_account = '-u lixplus -p Lidathena10'
+    
     update = 1
-    ins_dir = r'D:\MyFiles\Downloads\Pictures\Instagram'
+    ins_dir = r'D:\Downloads\Pictures\Instagram'
     os.chdir(ins_dir)
     user_list = os.listdir(ins_dir)
     for user in user_list[::]:
         if os.path.isfile(os.path.join(ins_dir, user)):
             user_list.remove(user)
-    user_list += ['velyyson_g', 'djamberna', 'yun.jj', 'djjina_official']
+    # user_list += ['velyyson_g', 'djamberna', 'yun.jj', 'djjina_official']
     ins_download(update, user_list)
 
 
