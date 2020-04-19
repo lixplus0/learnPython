@@ -32,7 +32,7 @@ class MyFrame(wx.Frame):
     def __init__(self):
         wx.Frame.__init__(self, None, title='WIFI自动重连')
         self.TIME_INTERVAL = 30
-        self.wifi_name = 'NBLXZ;HBNU'
+        self.wifi_name = 'NBLXZ_5G;HBNU'
         self.threads = WorkerThread(self)
         panel = wx.Panel(self)
         

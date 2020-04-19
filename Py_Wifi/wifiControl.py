@@ -35,7 +35,7 @@ def wifi_scan(iface):
 
 def wifi_connect(iface):
     '''连接WIFI，网络连通返回真'''
-    known_wifi = ['NBLXZ', 'HBNU']
+    known_wifi = ['NBLXZ_5G', 'HBNU']
     profile = Profile()  # 配置文件
     for wifi in known_wifi:
         iface.disconnect()

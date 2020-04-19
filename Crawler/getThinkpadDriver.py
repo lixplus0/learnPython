@@ -10,11 +10,11 @@ import requests
 
 class CheckDriver():
     def __init__(self):
-        self.WEBSITE = 'https://newsupport.lenovo.com.cn/api/drive/drive_listnew?searchKey=3110338&sysid=138'
+        self.WEBSITE = 'https://newsupport.lenovo.com.cn/api/drive/drive_listnew?searchKey=3110338'
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'}
         # self.json_file = r"D:\Learn_Codes\LearnPython\Crawler\driver.json"
-        self.json_file = r".\driver.json"
+        self.json_file = r"./driver.json"
         self.old_json_info = {}
         self.new_json_info = {}
         self.flag = 0
@@ -74,7 +74,7 @@ class CheckDriver():
 
     def write_file(self, json_info):
         '''以覆盖的方式写入json文件'''
-        with open(self.json_file, 'w', encoding='utf-8') as f:
+        with open(os.path.abspath(self.json_file), 'w', encoding='utf-8') as f:
             json.dump(json_info, f)
 
     def main_method(self):
@@ -117,7 +117,7 @@ class CheckDriver():
                     new_drive_version = new_drive_list[newdrive_i]['Version']
                     if has_new_drive < len(old_drive_list):  # 找到了旧版本drive
                         old_drive_version = old_drive_list[olddrive_j]['Version']
-                    else:  # 找不到了旧版本drive
+                    else:  # 找不到旧版本drive
                         old_drive_version = "新增"
 
                     if old_drive_version == new_drive_version:
